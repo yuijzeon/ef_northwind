@@ -1,3 +1,16 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+using AsyncForeach.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
-Console.WriteLine("Hello, World!");
+var northwindContext = new NorthwindContext();
+
+var categories = await northwindContext.Customers.ToListAsync();
+
+foreach (var category in categories)
+{
+    Console.WriteLine(JsonSerializer.Serialize(category, new JsonSerializerOptions
+    {
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+    }));
+}
