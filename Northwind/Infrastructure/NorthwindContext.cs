@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace AsyncForeach.Infrastructure;
+namespace Northwind.Infrastructure;
 
 public class NorthwindContext : DbContext
 {

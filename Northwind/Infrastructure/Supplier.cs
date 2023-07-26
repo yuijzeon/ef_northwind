@@ -1,8 +1,8 @@
-﻿namespace AsyncForeach.Infrastructure;
+﻿namespace Northwind.Infrastructure;
 
-public class Customer
+public class Supplier
 {
-    public string CustomerId { get; set; }
+    public int SupplierId { get; set; }
 
     public string CompanyName { get; set; }
     public string ContactName { get; set; }
@@ -14,4 +14,5 @@ public class Customer
     public string Country { get; set; }
     public string Phone { get; set; }
     public string Fax { get; set; }
+    public string HomePage { get; set; }
 }

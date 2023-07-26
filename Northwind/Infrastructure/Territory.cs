@@ -1,4 +1,4 @@
-﻿namespace AsyncForeach.Infrastructure;
+﻿namespace Northwind.Infrastructure;
 
 public class Territory
 {

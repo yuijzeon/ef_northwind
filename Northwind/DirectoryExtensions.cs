@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace AsyncForeach;
+namespace Northwind;
 
 public static class DirectoryExtensions
 {

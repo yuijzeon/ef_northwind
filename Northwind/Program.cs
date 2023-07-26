@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
-using AsyncForeach.Infrastructure;
+using Northwind.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 var northwindContext = new NorthwindContext();
