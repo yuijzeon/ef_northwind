@@ -5,7 +5,17 @@ using Microsoft.EntityFrameworkCore;
 
 var northwindContext = new NorthwindContextDev();
 
-var categories = await northwindContext.Customers.ToListAsync();
+// ERROR: The LINQ expression could not be translated.
+/*
+var categories = await northwindContext.Territories
+    .Where(x => x.RegionInfo.Id == 1)
+    .ToListAsync();
+*/
+
+// SUCCESS: The LINQ expression could be translated.
+var categories = await northwindContext.Territories
+    .Where(x => x.RegionInfo == RegionInfo.Parse(1))
+    .ToListAsync();
 
 foreach (var category in categories)
 {

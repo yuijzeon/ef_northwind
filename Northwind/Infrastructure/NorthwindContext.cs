@@ -11,7 +11,6 @@ public class NorthwindContext : DbContext
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderDetail> OrderDetails { get; set; }
     public DbSet<Product> Products { get; set; }
-    public DbSet<Region> Regions { get; set; }
     public DbSet<Shipper> Shippers { get; set; }
     public DbSet<Supplier> Suppliers { get; set; }
     public DbSet<Territory> Territories { get; set; }
@@ -75,12 +74,6 @@ public class NorthwindContext : DbContext
             entity.HasOne(x => x.Category);
         });
 
-        modelBuilder.Entity<Region>(entity =>
-        {
-            entity.ToTable("Regions");
-            entity.HasKey(x => x.RegionId);
-        });
-
         modelBuilder.Entity<Shipper>(entity =>
         {
             entity.ToTable("Shippers");
@@ -97,7 +90,13 @@ public class NorthwindContext : DbContext
         {
             entity.ToTable("Territories");
             entity.HasKey(x => x.TerritoryId);
-            entity.HasOne(x => x.Region);
+
+            entity.Property(x => x.RegionInfo)
+                .HasColumnName("RegionId")
+                .HasConversion(
+                    x => x.Id,
+                    x => RegionInfo.Parse(x)
+                );
 
             entity.HasMany(x => x.Employees).WithMany()
                 .UsingEntity<EmployeeTerritory>(
