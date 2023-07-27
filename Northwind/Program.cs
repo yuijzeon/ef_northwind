@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 using Northwind.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
-var northwindContext = new NorthwindContext();
+var northwindContext = new NorthwindContextDev();
 
 var categories = await northwindContext.Customers.ToListAsync();
 
