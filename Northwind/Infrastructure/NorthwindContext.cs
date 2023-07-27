@@ -1,19 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace Northwind.Infrastructure;
 
 public class NorthwindContext : DbContext
 {
-    public NorthwindContext()
-    {
-        var projectRootDir = new DirectoryInfo(Directory.GetCurrentDirectory())
-            .FindParent("bin")
-            .Parent?.FullName ?? Directory.GetCurrentDirectory();
-
-        DbPath = Path.Combine(projectRootDir, "northwind.db");
-    }
-
     public DbSet<Category> Categories { get; set; }
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Employee> Employees { get; set; }
@@ -25,15 +15,6 @@ public class NorthwindContext : DbContext
     public DbSet<Shipper> Shippers { get; set; }
     public DbSet<Supplier> Suppliers { get; set; }
     public DbSet<Territory> Territories { get; set; }
-
-    private string DbPath { get; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlite($"Data Source={DbPath}");
-        optionsBuilder.UseLoggerFactory(LoggerFactory.Create(x => x.AddConsole()));
-        optionsBuilder.EnableSensitiveDataLogging();
-    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
